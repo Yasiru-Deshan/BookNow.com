@@ -12,17 +12,20 @@ import Loading from '../../components/mainpages/utils/loading/Loading';
 import { useParams} from "react-router";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownMenu from '../../pages/favorites/dropdown';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { TableCard } from '../../components/Advertisements/Advertisements-styles';
-import { ServicesCard } from '../../components/Advertisements/Advertisements-styles';
+import { ServicesCard, ServicesIcon, ServicesH2, Servicesp } from '../../components/Advertisements/Advertisements-styles';
 import { InfoContainer,
          TableWrapper,    
 } from './../../components/InfoSection/InfoElements';
+import Modal from 'react-modal';
+import Icon2 from '../../images/svg-2.svg'
 
 
 
 const Booking = ({lightBg,lightText}) =>{
   
+   const name = useRef(); 
    const desc = useRef();
    const id = useParams().id;
    const [title, setTitle] = useState("");
@@ -35,6 +38,7 @@ const Booking = ({lightBg,lightText}) =>{
    let [plist, setPlaylist] = useState([]);
    const [like,setlike] = useState();
    const [isliked,setisLiked] = useState(false);
+   const [mdal,setModal] = useState(false);
 
        useEffect(()=>{
         Aos.init({duration: 2000 });
@@ -186,19 +190,54 @@ const Booking = ({lightBg,lightText}) =>{
     }
 
 
-
-
-
-
-
-
-
     return (
 
 
         <div>
-            <div className="MovieContainer">
+         <Modal
+         isOpen={mdal} 
+         onRequestClose={()=> setModal(false)}
+         style={{
+           overlay: {
+             backgroundColor: 'transparent',
+             marginTop: '100px',
+             width: '40%',
+             height: '485px',
+             marginLeft: '30%', 
+           
+           },
 
+           content: {
+             borderRadius: '20px',
+             color: 'black',
+             background: 'white',  
+             boxShadow:'0 1px 3px rgba(0,0,0,0.2)',
+           }
+         }}>
+         <center>
+          <ServicesH2>How many Tickets?</ServicesH2>
+         </center> 
+          <Form onSubmit={submitHandler}>
+              <center>
+                    <ServicesIcon src={Icon2} />
+              </center>     
+
+              <button type="button" className="btn btn-outline-primary">1</button>
+              <button type="button" className="btn btn-outline-primary">2</button>
+              <button type="button" className="btn btn-outline-primary">3</button>
+              <button type="button" className="btn btn-outline-primary">4</button>
+              <button type="button" className="btn btn-outline-primary">5</button>
+              
+
+            <Button style={{ width: '100%'}} variant="primary" type="submit" onClick={()=>setModal(false)}>
+          
+             Proceed
+            </Button>
+           
+          </Form>
+        </Modal>
+
+            <div className="MovieContainer">
                 <div className="MovieWrapper">
                      <div className="MovieRow">
                      <div className="Column1">
@@ -276,10 +315,10 @@ const Booking = ({lightBg,lightText}) =>{
                        
                          <tr>
                           <td>Concord Cinema: Dehiwala</td>
-                          <td><button type="button" className="btn btn-outline-primary">7.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">10.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">1.15 P.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">4.15 P.M.</button></td>                          
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>7.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>10.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>1.15 P.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>4.15 P.M.</button></td>                          
                         </tr>
                         <tr>
                           <td>Concord Cinema: Dehiwala</td>

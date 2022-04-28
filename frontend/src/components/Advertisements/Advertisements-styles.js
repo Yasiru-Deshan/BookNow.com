@@ -72,8 +72,8 @@ export const TableCard = styled.div`
 
 export const ServicesIcon = styled.img`
 
-    height: 160px;
-    width: 160px;
+    height: 200px;
+    width: 200px;
     margin-bottom: 10px;
 `
 
