@@ -54,7 +54,6 @@ const Navbar = ({ toggle}) => {
                                     spy={true} 
                                     exact='true' 
                                     offset={-80}
-                                
                                     >Home</NavLinks>
                       </NavItem>
                       <NavItem>
@@ -74,29 +73,23 @@ const Navbar = ({ toggle}) => {
                                     offset={-80}>Cart</NavLinks>
                       </NavItem>
                       <NavItem>
-                          <NavLinks to="/browsemimi"
+                          <NavLinks to="/admin/theatres"
                                     smooth={true} 
                                     duration={500} 
                                     spy={true} 
                                     exact='true' 
-                                    offset={-80}>Events</NavLinks>
+                                    offset={-80}>Theatres</NavLinks>
                       </NavItem>
                       <NavItem>
-                          <NavLinks to="/contact"
+                          <NavLinks to="/admin/movies"
                                     smooth={true} 
                                     duration={500} 
                                     spy={true} 
                                     exact='true' 
-                                    offset={-80}>Contact Us</NavLinks>
+                                    offset={-80}>Movie List</NavLinks>
                       </NavItem>
-                      <NavItem>
-                          <NavLinks to="/admin"
-                                    smooth={true} 
-                                    duration={500} 
-                                    spy={true} 
-                                    exact='true' 
-                                    offset={-80}>Admin</NavLinks>
-                      </NavItem>
+                      
+                      
 
                   </NavMenu>
                   <NavBtn>

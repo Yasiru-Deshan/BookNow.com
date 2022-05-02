@@ -17,6 +17,7 @@ import TheatreList from './pages/movieadmin/theatrelist';
 import Theatre from './pages/movieadmin/theatre';
 import MovieList from './pages/movieadmin/movielist';
 import NewMovie from './pages/movieadmin/newmovie';
+import NewTheatre from './pages/movieadmin/newtheatre';
 
 
 const App = ()=> {
@@ -48,6 +49,7 @@ const App = ()=> {
         <Route path='/admin/theatre/:id' element ={<Theatre/>} exact/>
         <Route path='/admin/movies' element={<MovieList/>} exact/>
         <Route path='/admin/newmovie' element={<NewMovie/>} exact/>
+        <Route path='/admin/newtheatre' element={<NewTheatre/>} exact/>
    
   </Routes>
       <Footer/>

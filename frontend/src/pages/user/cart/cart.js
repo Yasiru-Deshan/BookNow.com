@@ -40,6 +40,7 @@ function Cart({lightBg}) {
                           <th>Tickets Quantity</th>
                           <th>Time</th>
                           <th>Checkout</th>
+                          <th></th>
                                                     
                         </tr>
                         </thead>
@@ -49,14 +50,16 @@ function Cart({lightBg}) {
                           <td>Concord Cinema: Dehiwala</td>
                           <td>4</td>
                           <td>1.15 P.M.</td>
-                          <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>                          
+                          <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>        
+                          <td><Button>Cancel Reservation</Button></td>                
                         </tr>
                          <tr>
                           <td>KGF 2</td>
                           <td>Regal Cinema: Gampaha</td>
                           <td>2</td>
                           <td>4.15 P.M.</td>
-                          <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>                          
+                          <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>    
+                          <td><Button>Cancel Reservation</Button></td>                     
                         </tr>
                         
                        </tbody>

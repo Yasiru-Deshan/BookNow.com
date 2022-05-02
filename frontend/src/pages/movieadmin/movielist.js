@@ -36,7 +36,7 @@ function MovieList() {
 </svg></h1>
 
             <center>
-              <MDBCol md="6" className="searchbar">
+              <MDBCol md="4" className="searchbar">
                <input className="form-control" 
                       type="text"
                       placeholder="Search Movies"

@@ -27,14 +27,18 @@ function TheatreList() {
                     
                <h1 style={{     marginTop:'100px',
                                 color: 'white',
-                                display: 'flex',  justifyContent:'center', alignItems:'center',
+                                display: 'flex',  
+                                justifyContent:'center', 
+                                alignItems:'center',
                     }}><span>Theatre List </span>&nbsp;
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" className="bi bi-cart-fill" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg></h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-camera-reels" viewBox="0 0 16 16">
+  <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+  <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
+  <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+</svg></h1>
 
             <center>
-              <MDBCol md="6" className="searchbar">
+              <MDBCol md="4" className="searchbar">
                <input className="form-control" 
                       type="text"
                       placeholder="Search Theatres"
@@ -44,14 +48,16 @@ function TheatreList() {
               </MDBCol>
             </center>
            
+           <Link to='/admin/newtheatre'>
               <Button  style={{  marginLeft: 'calc(72vw + 26px)',
                                  width:'150px',
                                  color: '#fff',
                                  marginTop:'-120px',
                                  marginBottom: '30px'}}>
-               Add New Theatre</Button>
+               Add New Theatre</Button></Link>
                    
-                      <TableCard style={{margin: '0px 50px 50px 50px'}}>
+                   <center>
+                      <TableCard style={{margin: '0px 50px 50px 50px',width: '600px'}}>
                        <table className='table'>
                     
                        <thead>
@@ -76,6 +82,7 @@ function TheatreList() {
                        </tbody>
                      </table>
                     </TableCard>
+                    </center>
                    </TableWrapper> 
                   </CartContainer> 
         </div>

@@ -1,14 +1,86 @@
-import React from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
 import { TableCard } from './../../components/Advertisements/Advertisements-styles';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
+import { ServicesCard, ServicesIcon, ServicesH2, Servicesp } from '../../components/Advertisements/Advertisements-styles';
+import Icon2 from '../../images/svg-2.svg';
+import { useParams} from "react-router";
+import axios from 'axios';
 
 function Theatre({lightBg}) {
+
+     const [mdal,setModal] = useState(false);
+     const id = useParams().id;
+      const desc = useRef();
+
+     
+   const submitHandler = async (e)=>{
+       e.preventDefault()
+       let newc;
+
+       const newComment = {
+           userId: '611b74dd16f8353848675308',
+           uname:'Liam Livingstone',
+           movieId: id,
+           //movieId:'6145eb2e19467e39980d27e7',
+           desc: desc.current.value,
+       }
+
+       try{
+           newc = await axios.post("http://localhost:8070/api/comments",newComment)
+           if(newc){
+               window.alert("Comment has been posted")
+           }
+       }catch(err){
+           console.log(err)
+       }
+   }
 
     return( 
 
         <div>
+         <Modal
+         isOpen={mdal} 
+         onRequestClose={()=> setModal(false)}
+         style={{
+           overlay: {
+             backgroundColor: 'transparent',
+             marginTop: '100px',
+             width: '40%',
+             height: '485px',
+             marginLeft: '30%', 
+           
+           },
+
+           content: {
+             borderRadius: '20px',
+             color: 'black',
+             background: 'white',  
+             boxShadow:'0 1px 3px rgba(0,0,0,0.2)',
+           }
+         }}>
+         <center>
+          <ServicesH2>Edit Movie</ServicesH2>
+         </center> 
+          <Form onSubmit={submitHandler}>
+              <center>
+                    <ServicesIcon src={Icon2} />
+              </center>     
+              
+
+             <label for="genre">Select Movie</label>
+    <select className="form-control">
+      <option>The BatMan</option>
+      <option>Spider Man 2</option>
+      <option>The Avengers</option>
+      <option>365 Days</option>
+    </select>
+            <Button style={{ width: '100%'}} variant="primary" type="submit" onClick={()=>setModal(false)}>Proceed</Button>
+          </Form>
+        </Modal>
+
         <div style={{
    /* Chrome 10-25, Safari 5.1-6 */
                           background: 'linear-gradient(to right, #240b36, #c31432)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -48,19 +120,19 @@ function Theatre({lightBg}) {
                         <tr>
                           <td>11.00 A.M.</td>
                           <td>The BatMan</td>
-                          <td><Link to={`/payment`}><Button>Update</Button></Link></td>
+                          <td><Button onClick ={()=> setModal(true)}>Update</Button></td>
                           <td><Link to={`/payment`}><Button variant="danger">Delete</Button></Link></td>                          
                         </tr>
                           <tr>
                           <td>1.15 P.M.</td>
                           <td>The BatMan</td>
-                          <td><Link to={`/payment`}><Button>Update</Button></Link></td>
+                          <td><Button onClick ={()=> setModal(true)}>Update</Button></td>
                           <td><Link to={`/payment`}><Button variant="danger">Delete</Button></Link></td>                          
                         </tr>
                          <tr>
                           <td>4.15 P.M.</td>
                           <td>The BatMan</td>
-                          <td><Link to={`/payment`}><Button>Update</Button></Link></td>
+                           <td><Button onClick ={()=> setModal(true)}>Update</Button></td>
                           <td><Link to={`/payment`}><Button variant="danger">Delete</Button></Link></td>                          
                         </tr>
                         
