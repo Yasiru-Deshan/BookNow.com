@@ -48,11 +48,8 @@
 }
 
 .newPlaylist{
-    margin-left: calc(72vw + 26px);
-    
-    
+    margin-left: calc(72vw + 26px); 
     font-size: calc(0.2vw + 12px);
-    border-radius: 4vw;
     padding: 1.8vw;
     color: #fff;
     background-color: #01bf71;

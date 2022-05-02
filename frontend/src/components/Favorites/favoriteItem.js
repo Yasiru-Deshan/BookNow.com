@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import {Link} from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown'
 import axios from 'axios';
-import DropdownMenu from '../../pages/favorites/dropdown';
+import DropdownMenu from '../../pages/user/favorites/dropdown';
 
    
 function FavoritesItem(props){

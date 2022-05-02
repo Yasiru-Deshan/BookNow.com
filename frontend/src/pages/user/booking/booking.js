@@ -1,24 +1,28 @@
 import React, { useEffect, useRef, useState} from 'react';
-import './movie.css';
+import './../movie/movie.css';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import Aos from 'aos';
 import "aos/dist/aos.css";
-import Comments from '../../components/CommentSection/comments';
-import ReactPlayer from 'react-player';
+import Comments from '../../../components/CommentSection/comments';
 import {Link} from 'react-router-dom';
 import axios from 'axios'; 
-import Loading from '../../components/mainpages/utils/loading/Loading';
 import { useParams} from "react-router";
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownMenu from '../../pages/favorites/dropdown';
-import { Button } from 'react-bootstrap';
+import DropdownMenu from '../../../pages/user/favorites/dropdown';
+import { Button, Form } from 'react-bootstrap';
+import { TableCard } from '../../../components/Advertisements/Advertisements-styles';
+import { ServicesCard, ServicesIcon, ServicesH2, Servicesp } from '../../../components/Advertisements/Advertisements-styles';
+import { InfoContainer,
+         TableWrapper,    
+} from './../../../components/InfoSection/InfoElements';
+import Modal from 'react-modal';
+import Icon2 from '../../../images/svg-2.svg';
 
 
 
 
-const Movie = () =>{
+const Booking = ({lightBg,lightText}) =>{
   
+   const name = useRef(); 
    const desc = useRef();
    const id = useParams().id;
    const [title, setTitle] = useState("");
@@ -31,6 +35,7 @@ const Movie = () =>{
    let [plist, setPlaylist] = useState([]);
    const [like,setlike] = useState();
    const [isliked,setisLiked] = useState(false);
+   const [mdal,setModal] = useState(false);
 
        useEffect(()=>{
         Aos.init({duration: 2000 });
@@ -182,19 +187,54 @@ const Movie = () =>{
     }
 
 
-
-
-
-
-
-
-
     return (
 
 
         <div>
-            <div className="MovieContainer">
+         <Modal
+         isOpen={mdal} 
+         onRequestClose={()=> setModal(false)}
+         style={{
+           overlay: {
+             backgroundColor: 'transparent',
+             marginTop: '100px',
+             width: '40%',
+             height: '485px',
+             marginLeft: '30%', 
+           
+           },
 
+           content: {
+             borderRadius: '20px',
+             color: 'black',
+             background: 'white',  
+             boxShadow:'0 1px 3px rgba(0,0,0,0.2)',
+           }
+         }}>
+         <center>
+          <ServicesH2>How many Tickets?</ServicesH2>
+         </center> 
+          <Form onSubmit={submitHandler}>
+              <center>
+                    <ServicesIcon src={Icon2} />
+              </center>     
+
+              <button type="button" className="btn btn-outline-primary">1</button>
+              <button type="button" className="btn btn-outline-primary">2</button>
+              <button type="button" className="btn btn-outline-primary">3</button>
+              <button type="button" className="btn btn-outline-primary">4</button>
+              <button type="button" className="btn btn-outline-primary">5</button>
+              
+
+            <Button style={{ width: '100%'}} variant="primary" type="submit" onClick={()=>setModal(false)}>
+          
+             Proceed
+            </Button>
+           
+          </Form>
+        </Modal>
+
+            <div className="MovieContainer">
                 <div className="MovieWrapper">
                      <div className="MovieRow">
                      <div className="Column1">
@@ -230,11 +270,10 @@ const Movie = () =>{
                                     
   
 
-                               
+                                 <Link to={`/watch/${id}`}>
+                                 <Button>View Trailer</Button></Link>
                                  <div>
-                                 <Link to={`/booking/${id}`}>
-                                 <Button>Book Tickets</Button></Link>
-                                 
+                              
                           {/*     <img className="profileuserimg"
                                   src={img2}
     alt=''/>*/}
@@ -263,64 +302,44 @@ const Movie = () =>{
                    </div>
                 </div>
 
-                <div className="commentcontainer">
-                <div className="commenttrailerWrapper">
-                     <div className="commentRow">
-                     <div className="commentSection">
-                     <h1 className="commenttitle">Reviews</h1>
 
-                     {allComments.length === 0 && <Loading />}
-             <CommentList/>
-
-             
-
-                <div>
-
-                <div className="comments">
-                <div className="commentwrapper">
-
-
-
-                   
-
-                   <form className="commenting" onSubmit={submitHandler}>
-                    <input placeholder="Leave a comment here..."
-                           type="text"
-                           required
-                           className="commentinput"
-                           ref={desc}    
-                           />
+                <InfoContainer lightBg = {lightBg} >
+                    <TableWrapper >
+                      <TableCard style={{margin: '50px 50px 50px 0px'}}>
+                       <table className='table'>
+                    
+                       <tbody>
                        
-                    <button className="commentbutton" type="submit">Send</button>
-                    </form>
-
-
-
-
-
-                </div>
-           
-                </div>
-                </div>
-                      </div>
-
-                    <div className="trailer">
-                         <ReactPlayer className="player"
-                            width="440px"
-                            height="240px"
-                            controls
-                            url={trailer}/>
-</div>
-
-            </div>
-       
-           
-            </div>
-</div>
-
+                         <tr>
+                          <td>Concord Cinema: Dehiwala</td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>7.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>10.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>1.15 P.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>4.15 P.M.</button></td>                          
+                        </tr>
+                        <tr>
+                          <td>Concord Cinema: Dehiwala</td>
+                          <td><button type="button" className="btn btn-outline-primary">7.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">10.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">1.15 P.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">4.15 P.M.</button></td>                          
+                        </tr>
+                        <tr>
+                          <td>Concord Cinema: Dehiwala</td>
+                          <td><button type="button" className="btn btn-outline-primary">7.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">10.30 A.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">1.15 P.M.</button></td>
+                          <td><button type="button" className="btn btn-outline-primary">4.15 P.M.</button></td>                          
+                        </tr>
+                        
+                       </tbody>
+                     </table>
+                    </TableCard>
+                   </TableWrapper> 
+                  </InfoContainer> 
 
         </div>
     )
 }
 
-export default Movie
+export default Booking

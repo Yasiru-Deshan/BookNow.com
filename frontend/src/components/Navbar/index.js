@@ -66,7 +66,7 @@ const Navbar = ({ toggle}) => {
                                     offset={-80}>Movies</NavLinks>
                       </NavItem>
                       <NavItem>
-                          <NavLinks to="/favorites"
+                          <NavLinks to="/cart"
                                     smooth={true} 
                                     duration={500} 
                                     spy={true} 

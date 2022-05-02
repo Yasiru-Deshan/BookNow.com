@@ -8,6 +8,14 @@ export const InfoContainer = styled.div`
          padding: 100px 0;
      }
      `
+export const CartContainer = styled.div`
+     color: #fff;
+
+     @media screen and (max-width: 768px){
+         padding: 100px 0;
+     }`
+
+
      export const InfoWrapper = styled.div`
      display: grid;
      z-index: 1;
