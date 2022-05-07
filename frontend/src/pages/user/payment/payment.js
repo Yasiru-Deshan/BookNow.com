@@ -42,7 +42,7 @@ function Payment(lightBg){
                 </div>
                 <div className="creditcard-body">
                     <p><small> You choose the method of payment with a credit card. Enter your paymentdetails or select another payment method </small></p>
-                    <div className="credit d-block mt-5 mx-auto"> <img className="frnt" src="https://i.imgur.com/Lj98lDm.png" width="200px"/> <img className="back" src="https://i.imgur.com/HrUwtFC.png" width="200px"/> </div>
+                    <div className="credit d-block mt-5 mx-auto"> <img className="frnt" alt="" src="https://i.imgur.com/Lj98lDm.png" width="200px"/> <img alt="" className="back" src="https://i.imgur.com/HrUwtFC.png" width="200px"/> </div>
                 </div>
             </div>
         </div>

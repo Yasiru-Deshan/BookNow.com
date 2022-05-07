@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React,{ useEffect, useState} from 'react';
 import './comment.css';
 import DeleteIcon from '@material-ui/icons/Delete';

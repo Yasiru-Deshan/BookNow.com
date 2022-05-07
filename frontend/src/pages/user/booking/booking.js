@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState} from 'react';
 import './../movie/movie.css';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -10,7 +11,7 @@ import { useParams} from "react-router";
 import DropdownMenu from '../../../pages/user/favorites/dropdown';
 import { Button, Form } from 'react-bootstrap';
 import { TableCard } from '../../../components/Advertisements/Advertisements-styles';
-import { ServicesCard, ServicesIcon, ServicesH2, Servicesp } from '../../../components/Advertisements/Advertisements-styles';
+import { ServicesIcon, ServicesH2 } from '../../../components/Advertisements/Advertisements-styles';
 import { InfoContainer,
          TableWrapper,    
 } from './../../../components/InfoSection/InfoElements';
@@ -22,7 +23,7 @@ import Icon2 from '../../../images/svg-2.svg';
 
 const Booking = ({lightBg,lightText}) =>{
   
-   const name = useRef(); 
+   //const name = useRef(); 
    const desc = useRef();
    const id = useParams().id;
    const [title, setTitle] = useState("");
@@ -36,6 +37,11 @@ const Booking = ({lightBg,lightText}) =>{
    const [like,setlike] = useState();
    const [isliked,setisLiked] = useState(false);
    const [mdal,setModal] = useState(false);
+   const [moviename,setMoviename] = useState("");
+   const [theatrename,setTheatrename] = useState("");
+   const [tickets,setTickets] = useState("");
+   const [time,setTime] = useState("");
+   const [date,setDate] = useState("");
 
        useEffect(()=>{
         Aos.init({duration: 2000 });
@@ -72,119 +78,34 @@ const Booking = ({lightBg,lightText}) =>{
 
 
     
-   const submitFavsHandler = async (e)=>{
+   const submitBookingHandler = async (e)=>{
        e.preventDefault()
-       let newF;
+       let newCart;
 
-       const newFavorite = {
+       const newBooking = {
            
            movieId: id,
-           title: title,
+           movieName: title,
+           theatreName: "Majestic",
            img: image,
            year: year,
-           genre: genre
+           genre: genre,
+           tickets: tickets,
+           time: "4.15",
+           date: "Mar 15"
            //movieId:'6145eb2e19467e39980d27e7',
         
        }
 
        try{
-           newF = await axios.post("http://localhost:8070/api/favorites/addto",newFavorite)
-           if(newF){
-               window.alert("Movie has been added to favorites")
+           newCart = await axios.post("http://localhost:8070/api/cart/addto",newBooking)
+           if(newCart){
+               window.alert("Movie has been added to cart ")
            }
        }catch(err){
            console.log(err)
        }
    }
-
-
-
-   const submitHandler = async (e)=>{
-       e.preventDefault()
-       let newc;
-
-       const newComment = {
-           userId: '611b74dd16f8353848675308',
-           uname:'Liam Livingstone',
-           movieId: id,
-           //movieId:'6145eb2e19467e39980d27e7',
-           desc: desc.current.value,
-       }
-
-       try{
-           newc = await axios.post("http://localhost:8070/api/comments",newComment)
-           if(newc){
-               window.alert("Comment has been posted")
-           }
-       }catch(err){
-           console.log(err)
-       }
-   }
-
-
-
-    const [allComments,setAllComments] = useState([]);
-
-    useEffect(()=>{
-
-        const getComments = () =>{
-        axios.get(`http://localhost:8070/api/comments/movie/${id}`).then((res)=>{
-            setAllComments(res.data);
-        })
-    }
-       getComments();
-    },[])
-
-
-    const CommentList = ()=>{
-        return allComments.map((comment)=>{
-
-            return(
-                <Comments
-                   key={comment.id}
-                   id={comment._id}
-                   userid = {comment.userId}
-                   author={comment.uname}
-                   desc={comment.desc}/>
-
-              
-            )
-            
-        })
-        
-    }
-    
-
-
-    useEffect(()=>{
-
-      const getPlayLists = () =>{
-        axios.get('http://localhost:8070/api/playlists').then((res)=>{
-          setPlaylist(res.data);
-        })
-      }
-
-      getPlayLists();
-    },[])
-
-    const PlaylistAll = ()=>{
-      return plist.map((pName)=>{
-
-        return(
-          <DropdownMenu
-               key = {pName.id}
-               id  =   {pName._id}
-               name = {pName.name}
-               desc = {pName.desc} 
-               title = {title}
-               year = {year}
-               img = {image}
-               movieId ={id}  
-               genre = {genre}
-               />
-        )
-      })
-    }
 
 
     return (
@@ -199,7 +120,7 @@ const Booking = ({lightBg,lightText}) =>{
              backgroundColor: 'transparent',
              marginTop: '100px',
              width: '40%',
-             height: '485px',
+             height: '505px',
              marginLeft: '30%', 
            
            },
@@ -214,21 +135,25 @@ const Booking = ({lightBg,lightText}) =>{
          <center>
           <ServicesH2>How many Tickets?</ServicesH2>
          </center> 
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitBookingHandler}>
               <center>
                     <ServicesIcon src={Icon2} />
               </center>     
 
-              <button type="button" className="btn btn-outline-primary">1</button>
-              <button type="button" className="btn btn-outline-primary">2</button>
-              <button type="button" className="btn btn-outline-primary">3</button>
-              <button type="button" className="btn btn-outline-primary">4</button>
-              <button type="button" className="btn btn-outline-primary">5</button>
+              <button type="button" className="btn btn-outline-primary" onClick={() => setTickets(1)}>1</button>
+              <button type="button" className="btn btn-outline-primary" onClick={() => setTickets(2)}>2</button>
+              <button type="button" className="btn btn-outline-primary" onClick={() => setTickets(3)}>3</button>
+              <button type="button" className="btn btn-outline-primary" onClick={() => setTickets(4)}>4</button>
+              <button type="button" className="btn btn-outline-primary" onClick={() => setTickets(5)}>5</button>
               
 
-            <Button style={{ width: '100%'}} variant="primary" type="submit" onClick={()=>setModal(false)}>
+             <Button variant="primary" style={{width:'225px', height:'50px'}} onClick={()=>setModal(false)}>
+           
+             Close
+            </Button>
+            <Button variant="primary" style={{width:'225px', height:'50px'}} type="submit">
           
-             Proceed
+             Confirm
             </Button>
            
           </Form>

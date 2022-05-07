@@ -22,6 +22,12 @@ const ViewMsg = require('./routes/viewMsg');
 const movieRoutes = require('./routes/movies');
 const listRouts = require('./routes/lists');
 
+//theatre
+const theatreRouts = require('./routes/theatre');
+
+//cart
+const cartRoutes = require('./routes/cart');
+
 
 
 const port = process.env.PORT || 8070;
@@ -90,3 +96,8 @@ app.use("/api/favorites", favoritesRoute);
 app.use("/api/movies", movieRoutes);
 app.use("/api/lists", listRouts);
 
+//theatre
+app.use("/api/theatre", theatreRouts);
+
+//cart
+app.use("/api/cart", cartRoutes);

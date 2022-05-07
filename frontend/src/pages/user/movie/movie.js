@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState} from 'react';
 import './movie.css';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -9,7 +10,6 @@ import {Link} from 'react-router-dom';
 import axios from 'axios'; 
 //import Loading from '../../components/mainpages/utils/loading/Loading';
 import { useParams} from "react-router";
-import DropdownMenu from '../../../pages/user/favorites/dropdown';
 import { Button } from 'react-bootstrap';
 
 
@@ -24,9 +24,9 @@ const Movie = () =>{
    const [genre,setGenre] = useState("");
    const [description, setDesc] = useState("");
    const [trailer, setTrailer] = useState("");
-   const [video, setVideo] = useState("");
+   //const [video, setVideo] = useState("");
    const [image,setImage] = useState("");
-   let [plist, setPlaylist] = useState([]);
+   let [ setPlaylist] = useState([]);
    const [like,setlike] = useState();
    const [isliked,setisLiked] = useState(false);
 
@@ -42,7 +42,7 @@ const Movie = () =>{
             setGenre(response.genre);
             setDesc(response.desc);
             setTrailer(response.trailer);
-            setVideo(response.video);
+            //setVideo(response.video);
             setImage(response.img);
             setlike(response.likes.length)
         
@@ -65,30 +65,30 @@ const Movie = () =>{
 
 
     
-   const submitFavsHandler = async (e)=>{
-       e.preventDefault()
-       let newF;
+//    const submitFavsHandler = async (e)=>{
+//        e.preventDefault()
+//        let newF;
 
-       const newFavorite = {
+//        const newFavorite = {
            
-           movieId: id,
-           title: title,
-           img: image,
-           year: year,
-           genre: genre
-           //movieId:'6145eb2e19467e39980d27e7',
+//            movieId: id,
+//            title: title,
+//            img: image,
+//            year: year,
+//            genre: genre
+//            //movieId:'6145eb2e19467e39980d27e7',
         
-       }
+//        }
 
-       try{
-           newF = await axios.post("http://localhost:8070/api/favorites/addto",newFavorite)
-           if(newF){
-               window.alert("Movie has been added to favorites")
-           }
-       }catch(err){
-           console.log(err)
-       }
-   }
+//        try{
+//            newF = await axios.post("http://localhost:8070/api/favorites/addto",newFavorite)
+//            if(newF){
+//                window.alert("Movie has been added to favorites")
+//            }
+//        }catch(err){
+//            console.log(err)
+//        }
+//    }
 
 
 
@@ -126,7 +126,7 @@ const Movie = () =>{
         })
     }
        getComments();
-    },[])
+    },[id])
 
 
     const CommentList = ()=>{
@@ -160,24 +160,24 @@ const Movie = () =>{
       getPlayLists();
     },[])
 
-    const PlaylistAll = ()=>{
-      return plist.map((pName)=>{
+    // const PlaylistAll = ()=>{
+    //   return plist.map((pName)=>{
 
-        return(
-          <DropdownMenu
-               key = {pName.id}
-               id  =   {pName._id}
-               name = {pName.name}
-               desc = {pName.desc} 
-               title = {title}
-               year = {year}
-               img = {image}
-               movieId ={id}  
-               genre = {genre}
-               />
-        )
-      })
-    }
+    //     return(
+    //       <DropdownMenu
+    //            key = {pName.id}
+    //            id  =   {pName._id}
+    //            name = {pName.name}
+    //            desc = {pName.desc} 
+    //            title = {title}
+    //            year = {year}
+    //            img = {image}
+    //            movieId ={id}  
+    //            genre = {genre}
+    //            />
+    //     )
+    //   })
+    // }
 
 
 

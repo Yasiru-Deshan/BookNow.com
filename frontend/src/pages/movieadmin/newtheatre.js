@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
 import './../user/favorites/favorites.css';
 
 function NewTheatre() {
 
-      let [search, setSearch] = useState("");
+      //let [search, setSearch] = useState("");
 
     return( 
 

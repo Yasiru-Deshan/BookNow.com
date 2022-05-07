@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React,{ useEffect, useState} from 'react';
 import Carousel from "react-elastic-carousel";
 import './playlist.css';
@@ -55,21 +56,21 @@ function Playlist(props) {
       getFavs();
     },[])
 
-    const FavoritesAll = ()=>{
-      return favs.map((mName)=>{
+    // const FavoritesAll = ()=>{
+    //   return favs.map((mName)=>{
 
-        return(
-          <PlayListItem
-               key = {mName.id}
-               id  =   {mName.movieId}
-              title = {mName.title}
-                img = {mName.img}
-                year={mName.year}
-                type={mName.genre}  
-                />
-        )
-      })
-    }
+    //     return(
+    //       <PlayListItem
+    //            key = {mName.id}
+    //            id  =   {mName.movieId}
+    //           title = {mName.title}
+    //             img = {mName.img}
+    //             year={mName.year}
+    //             type={mName.genre}  
+    //             />
+    //     )
+    //   })
+    // }
     
 
   useEffect (() => {

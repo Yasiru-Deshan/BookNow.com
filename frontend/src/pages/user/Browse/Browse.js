@@ -16,7 +16,7 @@ const breakPoints = [
 
 function Browse() {
 
-  let [movieList, setMovieList] = useState([]);
+  //let [movieList, setMovieList] = useState([]);
   let [thrillerMovieList, setThrillerMovieList] = useState([]);
   let [actionMovieList, setActionMovieList] = useState([]);
   let [horrorMovieList, setHorrorMovieList] = useState([]);
@@ -24,32 +24,32 @@ function Browse() {
   let [romanceMovieList, setRomanceMovieList] = useState([]);
   let [search, setSearch] = useState("");
 
-    useEffect(() => {
+  //   useEffect(() => {
 
-    const getMovies = () => {
-      axios.get('http://localhost:8070/api/movies/').then((res) => {
-        setMovieList(res.data);
-      })
-    }
+  //   const getMovies = () => {
+  //     axios.get('http://localhost:8070/api/movies/').then((res) => {
+  //       setMovieList(res.data);
+  //     })
+  //   }
 
-    getMovies();
-  }, [])
+  //   getMovies();
+  // }, [])
 
-  const AllMovies = () => {
-    return movieList.map((pName) => {
+  // const AllMovies = () => {
+  //   return movieList.map((pName) => {
 
-      return (
-        <BrowseItem
-          key={pName.id}
-          id={pName._id}
-          img = {pName.img}
-          title={pName.title}
-          desc={pName.desc} 
-          year={pName.year}
-          />
-      )
-    })
-  }
+  //     return (
+  //       <BrowseItem
+  //         key={pName.id}
+  //         id={pName._id}
+  //         img = {pName.img}
+  //         title={pName.title}
+  //         desc={pName.desc} 
+  //         year={pName.year}
+  //         />
+  //     )
+  //   })
+  // }
 
   useEffect(() => {
 
@@ -189,9 +189,9 @@ useEffect(() => {
 
   //search filter
     if(search.length > 0){
-      movieList = movieList.filter((i) => {
-          return i.title.toLowerCase().match(search.toLowerCase());
-      });
+      // movieList = movieList.filter((i) => {
+      //     return i.title.toLowerCase().match(search.toLowerCase());
+      // });
         thrillerMovieList = thrillerMovieList.filter((i) => {
           return i.title.toLowerCase().match(search.toLowerCase());
       });

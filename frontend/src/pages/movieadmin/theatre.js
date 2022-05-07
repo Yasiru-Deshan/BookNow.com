@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React,{useEffect, useRef, useState} from 'react';
 import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
 import { TableCard } from './../../components/Advertisements/Advertisements-styles';

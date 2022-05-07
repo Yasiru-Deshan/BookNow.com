@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
-const Favorites = require("../models/Favorites")
+const Favorites = require("../models/Cart")
 
 {/*
 //add to favorites

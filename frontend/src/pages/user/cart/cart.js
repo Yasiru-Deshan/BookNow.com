@@ -1,10 +1,25 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { CartContainer,TableWrapper } from './../../../components/InfoSection/InfoElements';
 import { TableCard } from '../../../components/Advertisements/Advertisements-styles';
 import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function Cart({lightBg}) {
+
+  const [cart,setCart] = useState([]);
+
+   useEffect(() => {
+
+    const getCart = () => {
+      axios.get('http://localhost:8070/api/cart/allbookings').then((res) => {
+        setCart(res.data);
+        
+      })
+    }
+
+    getCart();
+  }, [])
 
     return( 
 
@@ -45,23 +60,17 @@ function Cart({lightBg}) {
                         </tr>
                         </thead>
                         <tbody>
+                        {cart.map(c => (
                         <tr>
-                          <td>The BatMan</td>
-                          <td>Concord Cinema: Dehiwala</td>
-                          <td>4</td>
-                          <td>1.15 P.M.</td>
+                          <td>{c.movieName}</td>
+                          <td>{c.theatreName}</td>
+                          <td>{c.tickets}</td>
+                          <td>{c.time}</td>
                           <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>        
                           <td><Button>Cancel Reservation</Button></td>                
                         </tr>
-                         <tr>
-                          <td>KGF 2</td>
-                          <td>Regal Cinema: Gampaha</td>
-                          <td>2</td>
-                          <td>4.15 P.M.</td>
-                          <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>    
-                          <td><Button>Cancel Reservation</Button></td>                     
-                        </tr>
-                        
+                        ))}
+  
                        </tbody>
                      </table>
                     </TableCard>
