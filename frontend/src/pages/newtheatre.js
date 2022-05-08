@@ -1,10 +1,39 @@
-import React from 'react';
-import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
-import './../user/favorites/favorites.css';
+import React,{ useRef} from 'react';
+import { CartContainer,TableWrapper } from './../components/InfoSection/InfoElements';
+import './favorites/favorites.css';
+import axios from 'axios';
 
 function NewTheatre() {
 
       //let [search, setSearch] = useState("");
+
+      const name = useRef();
+      const city = useRef();
+      const email = useRef();
+      const mobile = useRef();
+      
+
+      const submitHandler = async (e)=>{
+       e.preventDefault()
+       let newm;
+
+       const NewTheatre = {
+           name : name.current.value,
+           city : city.current.value,
+           email : email.current.value,
+           mobile : mobile.current.value,
+          
+       }
+
+       try{
+           newm = await axios.post("http://localhost:8070/api/theatre",NewTheatre)
+           if(newm){
+               window.alert("Theatre has been added")
+           }
+       }catch(err){
+           console.log(err)
+       }
+   }
 
     return( 
 
@@ -31,25 +60,25 @@ function NewTheatre() {
   <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
 </svg></h1>
 
-<form>
+<form onSubmit={submitHandler}>
 
    <div className="form-group">
     <label for="name">Theatre Name</label>
-    <input className="form-control" type="text" placeholder="Enter Movie Name"/>
+    <input className="form-control" type="text" placeholder="Enter Theatre Name" ref={name}/>
   </div>
 
     <div className="form-group">
     <label for="city">City</label>
-    <input className="form-control" type="text" placeholder="Enter Movie Name"/>
+    <input className="form-control" type="text" placeholder="Enter City Name" ref={city}/>
   </div>
 
   <div className="form-group">
     <label for="email">E-mail</label>
-    <input type="email" className="form-control" placeholder="Enter E mail"/>
+    <input type="email" className="form-control" placeholder="Enter E mail" ref={email}/>
   </div>
  <div className="form-group">
     <label for="description">Contact Number</label>
-    <input type="" className="form-control" id="description" placeholder="Enter Mobile Number"/>
+    <input type="" className="form-control" id="description" placeholder="Enter Mobile Number" ref={mobile}/>
   </div>
 
         <button type="submit" className="btn btn-primary" style={{width:'290px'}}>Add</button>

@@ -1,14 +1,14 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState} from 'react';
-import './movie.css';
+import './movie2.css';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Aos from 'aos';
 import "aos/dist/aos.css";
-import Comments from '../../../components/CommentSection/comments';
+import Comments from '../../components/CommentSection/comments';
 import ReactPlayer from 'react-player';
 import {Link} from 'react-router-dom';
 import axios from 'axios'; 
-//import Loading from '../../components/mainpages/utils/loading/Loading';
+
 import { useParams} from "react-router";
 import { Button } from 'react-bootstrap';
 
@@ -24,7 +24,7 @@ const Movie = () =>{
    const [genre,setGenre] = useState("");
    const [description, setDesc] = useState("");
    const [trailer, setTrailer] = useState("");
-   //const [video, setVideo] = useState("");
+   const [video, setVideo] = useState("");
    const [image,setImage] = useState("");
    let [ setPlaylist] = useState([]);
    const [like,setlike] = useState();
@@ -42,7 +42,7 @@ const Movie = () =>{
             setGenre(response.genre);
             setDesc(response.desc);
             setTrailer(response.trailer);
-            //setVideo(response.video);
+            setVideo(response.video);
             setImage(response.img);
             setlike(response.likes.length)
         

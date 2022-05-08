@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Form } from 'react-bootstrap';
-import '../../pages/user/favorites/favorites.css';
+import '../../pages/favorites/favorites.css';
 import PlayListItem from './playlistitem';
 import {jsPDF} from 'jspdf';
 //import ListIcon from '@material-ui/icons/List';

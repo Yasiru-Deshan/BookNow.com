@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
-import './../user/favorites/favorites.css';
+import { CartContainer,TableWrapper } from './../components/InfoSection/InfoElements';
+import './favorites/favorites.css';
 import axios from 'axios';
 
 function NewMovie() {

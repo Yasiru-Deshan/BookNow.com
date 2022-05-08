@@ -1,9 +1,9 @@
 import React,{ useEffect, useState, useRef} from 'react';
 import {  MDBCol } from "mdbreact"
-import FavoritesItem from '../../../components/Favorites/favoriteItem';
+import FavoritesItem from '../../components/Favorites/favoriteItem';
 import Carousel from "react-elastic-carousel";
 import './favorites.css';
-import Playlist from '../../../components/Playlist/playlist';
+import Playlist from '../../components/Playlist/playlist';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Button,Form } from 'react-bootstrap';

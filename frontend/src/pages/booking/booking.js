@@ -4,19 +4,19 @@ import './../movie/movie.css';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Aos from 'aos';
 import "aos/dist/aos.css";
-import Comments from '../../../components/CommentSection/comments';
+//import Comments from '../../../components/CommentSection/comments';
 import {Link} from 'react-router-dom';
 import axios from 'axios'; 
 import { useParams} from "react-router";
-import DropdownMenu from '../../../pages/user/favorites/dropdown';
+//import DropdownMenu from '../../../pages/user/favorites/dropdown';
 import { Button, Form } from 'react-bootstrap';
-import { TableCard } from '../../../components/Advertisements/Advertisements-styles';
-import { ServicesIcon, ServicesH2 } from '../../../components/Advertisements/Advertisements-styles';
+import { TableCard } from '../../components/Advertisements/Advertisements-styles';
+import { ServicesIcon, ServicesH2 } from '../../components/Advertisements/Advertisements-styles';
 import { InfoContainer,
          TableWrapper,    
-} from './../../../components/InfoSection/InfoElements';
+} from './../../components/InfoSection/InfoElements';
 import Modal from 'react-modal';
-import Icon2 from '../../../images/svg-2.svg';
+import Icon2 from '../../images/svg-2.svg';
 
 
 
@@ -42,6 +42,7 @@ const Booking = ({lightBg,lightText}) =>{
    const [tickets,setTickets] = useState("");
    const [time,setTime] = useState("");
    const [date,setDate] = useState("");
+   const [theatre,setTheatre]= useState([]);
 
        useEffect(()=>{
         Aos.init({duration: 2000 });
@@ -62,6 +63,18 @@ const Booking = ({lightBg,lightText}) =>{
         }
         fetchData();
     }, [id])
+
+    useEffect(() => {
+
+    const getTheatres = () => {
+      axios.get('http://localhost:8070/api/theatre/all').then((res) => {
+        setTheatre(res.data);
+        
+      })
+    }
+
+    getTheatres();
+  }, [])
 
  
  
@@ -234,28 +247,15 @@ const Booking = ({lightBg,lightText}) =>{
                        <table className='table'>
                     
                        <tbody>
-                       
+                        {theatre.map(c => (
                          <tr>
-                          <td>Concord Cinema: Dehiwala</td>
+                          <td>{c.name}</td>
                           <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>7.30 A.M.</button></td>
                           <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>10.30 A.M.</button></td>
                           <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>1.15 P.M.</button></td>
                           <td><button type="button" className="btn btn-outline-primary" onClick ={()=> setModal(true)}>4.15 P.M.</button></td>                          
                         </tr>
-                        <tr>
-                          <td>Concord Cinema: Dehiwala</td>
-                          <td><button type="button" className="btn btn-outline-primary">7.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">10.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">1.15 P.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">4.15 P.M.</button></td>                          
-                        </tr>
-                        <tr>
-                          <td>Concord Cinema: Dehiwala</td>
-                          <td><button type="button" className="btn btn-outline-primary">7.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">10.30 A.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">1.15 P.M.</button></td>
-                          <td><button type="button" className="btn btn-outline-primary">4.15 P.M.</button></td>                          
-                        </tr>
+                        ))}
                         
                        </tbody>
                      </table>

@@ -1,14 +1,27 @@
-import React,{useState} from 'react';
-import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
-import { TableCard } from './../../components/Advertisements/Advertisements-styles';
+import React,{useState, useEffect} from 'react';
+import { CartContainer,TableWrapper } from './../components/InfoSection/InfoElements';
+import { TableCard } from './../components/Advertisements/Advertisements-styles';
 import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {  MDBCol } from "mdbreact";
-import './../user/favorites/favorites.css';
+import './favorites/favorites.css';
+import axios from "axios";
 
 function MovieList() {
 
       let [search, setSearch] = useState("");
+      let [movieList, setMovieList] = useState([]);
+
+       useEffect(() => {
+
+    const getMovies = () => {
+      axios.get('http://localhost:8070/api/movies/').then((res) => {
+        setMovieList(res.data);
+      })
+    }
+
+    getMovies();
+  }, [])
 
     return( 
 
@@ -70,17 +83,14 @@ function MovieList() {
                         </tr>
                         </thead>
                         <tbody>
+                        {movieList.map(m => (
                         <tr>
-                          <td>The Batman</td>
+                          <td>{m.title}</td>
                            <td><Link to={`/payment`}><Button>Update</Button></Link></td>
                           <td><Link to={`/payment`}><Button variant="danger">Delete</Button></Link></td>                            
                         </tr>
-                         <tr>
-                          <td>Spider Man </td>
-                           <td><Link to={`/payment`}><Button>Update</Button></Link></td>
-                          <td><Link to={`/payment`}><Button variant="danger">Delete</Button></Link></td>                            
-                        </tr>
-                        
+                         
+                        ))}
                        </tbody>
                      </table>
                     </TableCard>

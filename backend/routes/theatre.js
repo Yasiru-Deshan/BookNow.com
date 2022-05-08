@@ -53,7 +53,7 @@ router.get('/find/:id', async (req, res) => {
 
 //GET ALL
 
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
 	try {
 		const theatre = await Theatre.find();
 		res.status(200).json(theatre.reverse());

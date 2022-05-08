@@ -1,14 +1,32 @@
-import React,{useState} from 'react';
-import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
-import { TableCard } from './../../components/Advertisements/Advertisements-styles';
+import React,{useState, useEffect} from 'react';
+import { CartContainer,TableWrapper } from './../components/InfoSection/InfoElements';
+import { TableCard } from './../components/Advertisements/Advertisements-styles';
 import { Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import {  MDBCol } from "mdbreact";
-import './../user/favorites/favorites.css';
+import './favorites/favorites.css';
+import axios from "axios"; 
+  
 
 function TheatreList() {
 
+    
       let [search, setSearch] = useState("");
+      const [theatre,setTheatre]= useState([]);
+
+      useEffect(() => {
+
+    const getTheatres = () => {
+      axios.get('http://localhost:8070/api/theatre/all').then((res) => {
+        setTheatre(res.data);
+        
+
+        
+      })
+    }
+
+    getTheatres();
+  }, [])
 
     return( 
 
@@ -70,15 +88,13 @@ function TheatreList() {
                         </tr>
                         </thead>
                         <tbody>
+                        {theatre.map(c => (
                         <tr>
-                          <td>Concord Cinema: Dehiwala</td>
-                          <td><Link to={`/admin/theatre/4`}><Button>View</Button></Link></td>                          
+                          <td>{c.name}</td>
+                          <td><Link to={`${c._id}`}><Button>View</Button></Link></td>                          
                         </tr>
-                         <tr>
-                          <td>Regal Cinema: Gampaha</td>
-                          <td><Link to={`/admin/theatre/4`}><Button>View</Button></Link></td>                          
-                        </tr>
-                        
+                        ))}
+                       
                        </tbody>
                      </table>
                     </TableCard>

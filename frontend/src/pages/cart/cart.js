@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
-import { CartContainer,TableWrapper } from './../../../components/InfoSection/InfoElements';
-import { TableCard } from '../../../components/Advertisements/Advertisements-styles';
+import { CartContainer,TableWrapper } from './../../components/InfoSection/InfoElements';
+import { TableCard } from '../../components/Advertisements/Advertisements-styles';
 import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
