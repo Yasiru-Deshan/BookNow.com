@@ -1,7 +1,7 @@
 import React,{useState,useRef} from 'react';
 import './payment.css';
 import Paypal from './../../components/PayPal';
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser';
 
 function Payment(lightBg){
 

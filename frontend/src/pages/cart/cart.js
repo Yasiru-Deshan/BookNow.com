@@ -21,6 +21,19 @@ function Cart({lightBg}) {
     getCart();
   }, [])
 
+  const deleteBooking = async (id) => {
+    let deletion;
+    
+
+    if (window.confirm(`Are you sure you want to cancel this reservation?`)) {
+      deletion = await axios.delete(`http://localhost:8070/api/cart/delete/${id}`);
+    }
+  
+  if (deletion){
+       window.alert(`reservation has been canceled`)
+  }
+  }
+
     return( 
 
         <div>
@@ -67,7 +80,7 @@ function Cart({lightBg}) {
                           <td>{c.tickets}</td>
                           <td>{c.time}</td>
                           <td><Link to={`/payment`}><Button>Checkout</Button></Link></td>        
-                          <td><Button>Cancel Reservation</Button></td>                
+                          <td><Button onClick={() => deleteBooking(c._id)}>Cancel Reservation</Button></td>                
                         </tr>
                         ))}
   

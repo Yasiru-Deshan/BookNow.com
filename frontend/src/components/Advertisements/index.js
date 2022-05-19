@@ -41,11 +41,7 @@ const Services = () => {
                     <ServicesH2>Gather your favorite shows to a One place</ServicesH2>
                     <Servicesp>Save your favorites easily and always have something to watch.</Servicesp>
                 </ServicesCard>
-
-
-
             </ServicesWrapper>
-
         </ServicesContainer>
     )
 }
