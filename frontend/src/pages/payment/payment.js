@@ -1,19 +1,43 @@
-import React from 'react';
+import React,{useState,useRef} from 'react';
 import './payment.css';
+import Paypal from './../../components/PayPal';
+import emailjs from 'emailjs-com'
 
 function Payment(lightBg){
 
-    
+    const [checkout,setCheckout] = useState(false)
+
+
+    const form = useRef();
+
+    const sendEmail = (e) => {
+    e.preventDefault();
+
+     emailjs.sendForm('gmail', 'template_67s2vgf', form.current, 'Y9lT8lCdNHyWRkDzlpNND')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset();
+    }
 
     return(
+        
+        
           <div>
+          {
+            checkout ? (
+                <Paypal/>
+            ) : (
            <div style={{
+
    /* Chrome 10-25, Safari 5.1-6 */
                           background: 'linear-gradient(to right, #240b36, #c31432)', /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             }}>
 
-        .       
+        .   <form ref={form} onSubmit={sendEmail}>
     <div className="callback d-flex flex-column align-items-center justify-content-center" >
         <div className="heading d-flex flex-column align-items-center justify-content-center"> 
             <p className="h-1">Contact Details</p>
@@ -21,12 +45,13 @@ function Payment(lightBg){
         </div>
         <div className="d-md-flex">
             <div className="row" style={{padding:'5px'}}>
-                <div className="col-md-5 col-12 me-md-4"> <input className="form-control" type="text" placeholder="Your Email"/> </div>
+                <div className="col-md-5 col-12 me-md-4"> <input className="form-control" type="text" name="user_name" placeholder="Your Name"/> </div>
+                <div className="col-md-5 col-12 me-md-4"> <input className="form-control" type="text" name="user_email" placeholder="Your Email"/> </div>
                 <div className="col-md-5 col-12 ms-md-1"> <input className="form-control" type="text" placeholder="Phone No"/> </div>
             </div>
-            <div className="btn btn-primary">Submit</div>
+            <div type="submit" value="Send" className="btn btn-primary">Submit</div>
         </div>
-    </div>
+    </div></form>
 
 
 <div className='container-fluid mt-5 mb-5 p-0' >
@@ -36,8 +61,9 @@ function Payment(lightBg){
                 <div className="creditcard-header">
                     <div className="heading mb-3"> PAYMENT METHOD </div>
                     <div className="sub-heading row text-center m-0">
-                        <div className="col-6 col-md-6 sub-heading1">By Credit Card</div>
+                        {/* <div className="col-6 col-md-6 sub-heading1">By Credit Card</div> */}
                         <div className="col-6 col-md-6 sub-heading2">By PayPal</div>
+                        <div className="col-6 col-md-6 sub-heading2">Mobile Payment</div>
                     </div>
                 </div>
                 <div className="creditcard-body">
@@ -90,7 +116,11 @@ function Payment(lightBg){
                     <div className="d-flex total mb-5">
                         <p><strong>TOTAL</strong></p>
                         <p><strong>$ 1235</strong></p>
-                    </div> <button className="btn col-12"> PAY </button>
+                    </div> <button className="btn col-12"
+                            onClick={()=>{
+                                setCheckout(true);
+                            }}
+                          > PAY </button>
                 </div>
             </div>
         </div>
@@ -98,8 +128,11 @@ function Payment(lightBg){
 </div>
 .
         </div>
+            )}
 </div>
+            
     )
+                   
 }
 
 export default Payment;

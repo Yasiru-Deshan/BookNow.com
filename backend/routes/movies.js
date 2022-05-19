@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const Movie = require('../models/Movie');
+const JWT = require("jsonwebtoken");
+const passport = require('passport');
 
-//CREATE
+//CREATE A MOVIE
 
 router.post('/', async (req, res) => {
 	const newMovie = new Movie(req.body);
@@ -13,7 +15,7 @@ router.post('/', async (req, res) => {
 	}
 });
 
-//UPDATE
+//UPDATE A MOVIE
 
 router.put('/:id', async (req, res) => {
 	try {
@@ -30,7 +32,7 @@ router.put('/:id', async (req, res) => {
 	}
 });
 
-//DELETE
+//DELETE A MOVIE
 
 router.delete('/:id', async (req, res) => {
 	try {
@@ -41,7 +43,7 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
-//GET
+//GET A SELECTED MOVIE
 
 router.get('/find/:id', async (req, res) => {
 	try {

@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const users = require('./routes/users');
 const commentRoute = require("./routes/comment");
 const playlistRoute = require("./routes/playlist");
 const favoritesRoute = require("./routes/favorites");
 require("dotenv").config();
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
+const User = require('./models/user');
 
 //Customers
 const customerRouter = require('./routes/customer.routes');
@@ -34,12 +36,7 @@ const port = process.env.PORT || 8070;
 
 
 const app = express(); 
-app.use(cors({
-    origin: [
-    'http://localhost:3000'
-  ],
-  credentials: true
-    }));
+
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors())
@@ -101,3 +98,7 @@ app.use("/api/theatre", theatreRouts);
 
 //cart
 app.use("/api/cart", cartRoutes);
+
+//users
+app.use("/api/users", users);
+

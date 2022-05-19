@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 
-function TheatreDropdownMenu(props) {
+function TheatreDropdownMenu2(props) {
 
     
   const submitHandler  = async(e)=>{
@@ -13,8 +13,8 @@ function TheatreDropdownMenu(props) {
 
       e.preventDefault()
       const updatedMovie = {
-        show1: props.title,
-        // show2: props.show2,
+        //show1: props.title,
+         show2: props.title,
         // show3: props.show3
   
       }
@@ -38,4 +38,4 @@ function TheatreDropdownMenu(props) {
     )
 }
 
-export default TheatreDropdownMenu
+export default TheatreDropdownMenu2

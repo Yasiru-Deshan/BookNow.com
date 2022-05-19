@@ -13,7 +13,7 @@ router.post('/', async(req,res) =>{
     }
 });
 
-//Update
+//Update theatre
 
 router.put('/:id', async (req,res) =>{
     try{
@@ -30,7 +30,7 @@ router.put('/:id', async (req,res) =>{
     }
 });
 
-//Delete
+//Delete a theatre
 router.delete('/:id', async (req, res) => {
 	try {
 		await Theatre.findByIdAndDelete(req.params.id);
@@ -40,7 +40,7 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
-//GET
+//GET a theatre
 
 router.get('/find/:id', async (req, res) => {
 	try {
@@ -51,7 +51,7 @@ router.get('/find/:id', async (req, res) => {
 	}
 });
 
-//GET ALL
+//GET ALL theatres
 
 router.get('/all', async (req, res) => {
 	try {

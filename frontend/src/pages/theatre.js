@@ -9,7 +9,9 @@ import { ServicesCard, ServicesIcon, ServicesH2, Servicesp } from '../components
 import Icon2 from '../images/svg-2.svg';
 import { useParams} from "react-router";
 import axios from 'axios';
-import TheatreDropdownMenu from '../components/DropDowns';
+import TheatreDropdownMenu from '../components/DropDowns/show1dropdown';
+import TheatreDropdownMenu2 from '../components/DropDowns/show1dropdown';
+import TheatreDropdownMenu3 from '../components/DropDowns/show1dropdown';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 function Theatre({lightBg}) {
@@ -26,33 +28,7 @@ function Theatre({lightBg}) {
      let [movieList, setMovieList] = useState([]);
      const [val,setVal] = useState("");
      const setShow = {val};
-     const [title, setTitle] = useState("");
-     const [year, setYear] = useState("");
-     const [genre,setGenre] = useState("");
-     const [description, setDesc] = useState("");
-     const [trailer, setTrailer] = useState("");
-     const [video, setVideo] = useState("");
-     const [img,setImage] = useState("");
-    //  const title = useRef();
-    //   const desc = useRef();
-    //   const trailer = useRef();
-    //   const genre = useRef();
-    //   const banner = useRef();
-    //   const year = useRef();
-    //   const cast1 = useRef();
-    //   const cast2 = useRef();
-    //   const cast3 = useRef();
-    //   const director = useRef();
-
-  //     const submitHandler = async (e)=>{
-  //      e.preventDefault()
-  //      let newm;
-
-      
-
      
-
-    
 
        useEffect(() => {
 
@@ -65,15 +41,42 @@ function Theatre({lightBg}) {
     getMovies();
   }, [])
 
-   const MovieList = ()=>{
+   const MovieList1 = ()=>{
       return movieList.map((pName)=>{
 
         return(
           <TheatreDropdownMenu
                key = {pName.id}
-               id  =   {pName._id}
+               id  = {pName._id}
                title = {pName.title}
-              
+               />
+        )
+      })
+    }
+
+    
+   const MovieList2 = ()=>{
+      return movieList.map((pName)=>{
+
+        return(
+          <TheatreDropdownMenu2
+               key = {pName.id}
+               id  = {pName._id}
+               title = {pName.title}
+               />
+        )
+      })
+    }
+
+    
+   const MovieList3 = ()=>{
+      return movieList.map((pName)=>{
+
+        return(
+          <TheatreDropdownMenu3
+               key = {pName.id}
+               id  = {pName._id}
+               title = {pName.title}
                />
         )
       })
@@ -148,12 +151,7 @@ function Theatre({lightBg}) {
             
 
               <CartContainer >
-                      <div style={{float: 'right', marginTop: '100px'}}>
-                        <Button>Add Movie</Button> 
-                        <Button onClick ={()=> {setModal(true); setVal(setShow1);}}>Update Movie</Button>
-                        <Link to={`/`}><Button variant="danger">Delete movie</Button></Link>
-                      </div>
-
+  
                     <TableWrapper >
                     <h1 style={{marginTop:'100px',
                                 color: 'white',
@@ -164,7 +162,10 @@ function Theatre({lightBg}) {
   <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
   <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
 </svg></h1>
+
+                 
                       <TableCard style={{margin: '50px 50px 50px 50px'}}>
+                         
                        <table className='table'>
                     
                        <thead>
@@ -184,29 +185,54 @@ function Theatre({lightBg}) {
                           <td>         
                           <Dropdown>
                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                             Update Movie
+                             Change Movie
                            </Dropdown.Toggle>
   
                            <Dropdown.Menu>
-                              <MovieList/>
+                              <MovieList1/>
                            </Dropdown.Menu>
                           </Dropdown>
                           </td>            
                         </tr>
                           <tr>
                           <td>1.15 P.M.</td>
-                          <td>{show2}</td>                      
+                          <td>{show2}</td>      
+                          <td><Dropdown>
+                           <Dropdown.Toggle variant="success" id="dropdown-basic">
+                             Change Movie
+                           </Dropdown.Toggle>
+  
+                           <Dropdown.Menu>
+                              <MovieList2/>
+                           </Dropdown.Menu>
+                          </Dropdown></td>                
                         </tr>
                          <tr>
                           <td>4.15 P.M.</td>
-                          <td>{show3}</td>                        
+                          <td>{show3}</td>    
+                          <td><Dropdown>
+                           <Dropdown.Toggle variant="success" id="dropdown-basic">
+                             Change Movie
+                           </Dropdown.Toggle>
+  
+                           <Dropdown.Menu>
+                              <MovieList3/>
+                           </Dropdown.Menu>
+                          </Dropdown></td>                    
                         </tr>
                         
                        </tbody>
                      </table>
-                      
+                      <Button variant="primary" style={{width:'225px', height:'50px'}}>
+           
+                    Add Movie
+                 </Button>
+                <Button variant="primary" style={{width:'225px', height:'50px'}} type="submit">
+          
+                    Delete Movie
+                </Button>
                     </TableCard>
-                     
+                 
                    </TableWrapper> 
                   </CartContainer> 
         </div>
